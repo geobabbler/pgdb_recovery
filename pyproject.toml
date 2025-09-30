@@ -1,0 +1,84 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pgdb-converter"
+version = "1.0.0"
+description = "Convert ESRI Personal Geodatabase (.mdb) files to CSV with WKT geometry"
+readme = "README.md"
+authors = [
+    {name = "Bill Dollins", email = "bill@dollins.net"}
+]
+license = {text = "MIT"}
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "Topic :: Scientific/Engineering :: GIS",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+]
+keywords = ["gis", "geodatabase", "esri", "mdb", "shapefile", "wkt", "csv", "qgis"]
+requires-python = ">=3.6"
+dependencies = [
+    "pyodbc>=4.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "black>=22.0",
+    "flake8>=4.0",
+    "mypy>=0.950",
+]
+
+[project.urls]
+Homepage = "https://github.com/geobabbler/pgdb_recovery"
+Documentation = "https://github.com/geobabbler/pgdb_recovery#readme"
+Repository = "https://github.com/geobabbler/pgdb_recovery"
+"Bug Tracker" = "https://github.com/geobabbler/pgdb_recovery/issues"
+
+[project.scripts]
+pgdb_recovery = "pgdb.read_pgdb_geometry:main"
+
+[tool.setuptools]
+packages = ["pgdb_recovery"]
+
+[tool.setuptools.package-data]
+pgdb_recovery = ["py.typed"]
+
+[tool.black]
+line-length = 100
+target-version = ['py36', 'py37', 'py38', 'py39', 'py310', 'py311']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.mypy]
+python_version = "3.6"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
