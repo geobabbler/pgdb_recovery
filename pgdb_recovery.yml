@@ -1,0 +1,10 @@
+name: pgdb_recovery
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python>=3.6
+  - pyodbc>=4.0.0
+  # Platform-specific ODBC drivers
+  - unixodbc  # For Linux/Mac - provides ODBC driver manager
+  - mdbtools  # For Linux/Mac - provides MDB file access

@@ -1,0 +1,5 @@
+# Personal Geodatabase to CSV Converter - Python Dependencies
+# Install with: pip install -r requirements.txt
+
+# ODBC database connectivity for accessing .mdb files
+pyodbc>=4.0.0
